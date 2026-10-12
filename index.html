@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fffdf9">
+<meta name="description" content="Создание сайтов на заказ в Казахстане. Доступные цены, удобный конструктор заказа и связь через WhatsApp.">
+<title>Создание сайтов — Разработка на заказ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--red:#bf3139;--dark:#302b2b;--muted:#847b79;--pink:#eeb5c2;--line:#eee4e2;--white:#fff;--bg:#fffdfa}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;color:var(--dark);font-family:Manrope,Arial,sans-serif;background:var(--bg);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.container{width:min(1160px,calc(100% - 36px));margin:auto}
+header{height:76px;position:sticky;top:0;z-index:30;background:#fffcf8ed;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.header-inner{height:100%;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-weight:800;font-size:18px;display:flex;align-items:center;gap:12px}
+.logo-symbol{width:41px;height:41px;background:var(--red);border-radius:50%;display:grid;place-items:center;color:white;font-size:20px}
+nav{display:flex;align-items:center;gap:30px;font-size:13px;font-weight:700}
+nav a:hover{color:var(--red)}
+.menu-btn{display:none;background:none;border:0;font-size:27px;color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;border:0;border-radius:12px;padding:14px 22px;font-weight:800;font-size:13px;min-height:49px;transition:.25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:white}
+.btn-light{background:white;color:var(--dark);border:1px solid var(--line)}
+.btn-green{background:#25d366;color:#08371e}
+.section{padding:86px 0;position:relative;z-index:2}
+.eyebrow{font-weight:800;color:var(--red);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.heading{text-align:center;max-width:720px;margin:0 auto 44px}
+.heading h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(33px,4.5vw,52px);letter-spacing:-.04em;line-height:1.15;margin:12px 0}
+.heading p{color:var(--muted);font-size:14px;line-height:1.9}
+.hero{position:relative;min-height:635px;display:flex;align-items:center;padding:90px 0 110px;overflow:hidden;background:linear-gradient(180deg,#fffaf7,#fffdf9)}
+.hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(48px,6.1vw,82px);letter-spacing:-.055em;line-height:1.08;margin:17px 0 25px;font-weight:600}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{font-size:15px;color:#726b69;line-height:2;max-width:520px;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-art{height:490px;position:relative;display:flex;justify-content:center;align-items:center}
+.sun{width:min(385px,85vw);height:min(385px,85vw);border-radius:50%;background:radial-gradient(circle at 35% 35%,#e65a64,#c93944 67%,#b52630);box-shadow:0 0 0 22px #d6494910,0 0 0 62px #d6494907;position:absolute;top:20px}
+.sun::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(130deg,#ffffff25,transparent 60%)}
+.japanese-letters{position:absolute;right:4%;top:22%;font-size:14px;line-height:2.1;writing-mode:vertical-rl;letter-spacing:.4em;color:#a74b51;opacity:.8}
+.art-caption{position:absolute;bottom:28px;left:1%;right:1%;text-align:center;z-index:4}
+.art-caption span{display:inline-block;padding:15px 27px;background:#ffffffdc;backdrop-filter:blur(12px);border:1px solid #fff;border-radius:100px;box-shadow:0 12px 35px #70202a18;font-family:Georgia,serif;font-size:18px;letter-spacing:.04em}
+.flower-cluster{position:absolute;z-index:3;filter:drop-shadow(0 5px 8px #8e263026)}
+.cluster-a{top:0;right:-12px;transform:rotate(17deg)}
+.cluster-b{bottom:45px;left:0;transform:rotate(-19deg) scale(.85)}
+.cluster-c{top:175px;left:-10px;transform:rotate(30deg) scale(.52)}
+.flower{position:absolute;width:92px;height:92px}
+.flower svg{width:100%;height:100%;overflow:visible}
+.flower:nth-child(1){top:0;left:0}
+.flower:nth-child(2){top:55px;left:50px;transform:rotate(29deg) scale(.75)}
+.flower:nth-child(3){top:95px;left:-25px;transform:rotate(-10deg) scale(.59)}
+.flower:nth-child(4){top:-43px;left:75px;transform:rotate(14deg) scale(.52)}
+.flower:nth-child(5){top:115px;left:115px;transform:rotate(-18deg) scale(.43)}
+.flower-cluster{width:230px;height:240px}
+.petal-layer{pointer-events:none;position:fixed;inset:0;z-index:5;overflow:hidden}
+.petal{position:absolute;top:-30px;width:12px;height:17px;background:linear-gradient(135deg,#f8d7e1,#e78fa9);border-radius:85% 10% 75% 15%;opacity:.65;animation:fall linear infinite}
+@keyframes fall{0%{transform:translate3d(0,-5vh,0) rotate(0deg)}50%{transform:translate3d(var(--drift),50vh,0) rotate(240deg)}100%{transform:translate3d(calc(var(--drift)*.4),110vh,0) rotate(580deg)}}
+.stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:43px}
+.stat strong{display:block;font-family:Georgia,serif;color:var(--red);font-size:26px}
+.stat small{font-size:11px;color:var(--muted);font-weight:700}
+.services{background:#fff}
+.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.service-card{padding:27px;background:#fff;border:1px solid var(--line);border-radius:19px;display:flex;flex-direction:column;transition:.3s}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 20px 45px #5d35300c;border-color:#e6bdc3}
+.service-index{font-size:11px;color:#b5a5a3;letter-spacing:.18em}
+.service-icon{font-size:29px;margin:15px 0}
+.service-card h3{font-family:Georgia,serif;font-size:22px;font-weight:500;margin:0 0 12px}
+.service-card p{color:var(--muted);font-size:12px;line-height:1.85;margin:0 0 16px}
+.service-features{flex:1;display:grid;align-content:start;gap:9px;margin-bottom:23px}
+.service-features div{font-size:12px;display:flex;gap:9px;align-items:start}
+.service-features div:before{content:"✦";color:#da899f}
+.service-bottom{border-top:1px solid var(--line);padding-top:19px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.service-price small{display:block;font-size:10px;color:var(--muted)}
+.service-price strong{font-size:23px;color:var(--red);font-family:Georgia,serif}
+.service-bottom button{border:1px solid #efd4d7;background:#fff5f5;color:var(--red);font-weight:800;border-radius:10px;padding:11px 14px;font-size:12px}
+.service-bottom button:hover{background:var(--red);color:white}
+.prices{background:#faf6f2}
+.price-table-wrap{background:white;border:1px solid var(--line);border-radius:18px;overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:18px 23px;border-bottom:1px solid var(--line);font-size:13px}
+th{background:#fff8f7;color:var(--red);font-size:11px;letter-spacing:.08em}
+tr:last-child td{border:0}
+td:last-child{font-weight:800;color:var(--red);white-space:nowrap}
+td:nth-child(2){color:var(--muted)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.process-card{border:1px solid var(--line);background:white;border-radius:18px;padding:25px}
+.step-number{font-family:Georgia,serif;font-size:35px;color:#da929c}
+.process-card h3{font-size:14px;margin:13px 0 9px}
+.process-card p{font-size:12px;line-height:1.8;color:var(--muted)}
+.order{background:linear-gradient(180deg,#faf4f1,#fffdfa)}
+.order-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.85fr);gap:22px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 15px 55px #562d2d09}
+.summary{position:sticky;top:96px}
+.form-group{margin-bottom:28px}
+.form-group:last-child{margin-bottom:0}
+.group-heading{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;margin-bottom:15px}
+.group-heading span{width:29px;height:29px;border-radius:50%;background:#fff0f0;color:var(--red);display:grid;place-items:center;font-size:12px}
+.label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}
+.field{width:100%;border:1px solid #e9e1df;background:#fffcfb;color:var(--dark);border-radius:11px;padding:14px 15px;outline:none;font-size:13px}
+.field:focus{border-color:#dca9b0;box-shadow:0 0 0 3px #f5d4dc60}
+textarea.field{min-height:110px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.option-list{display:grid;gap:9px}
+.option{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:13px;cursor:pointer}
+.option:hover{background:#fffbfc}
+.option input{width:17px;height:17px;accent-color:var(--red);flex-shrink:0}
+.option-text{flex:1;min-width:0}
+.option-text strong{display:block;font-size:12px}
+.option-text small{font-size:10px;color:var(--muted);display:block;margin-top:3px;line-height:1.6}
+.option-price{font-size:12px;font-weight:800;color:var(--red);white-space:nowrap}
+.warning{background:#fff7f5;border:1px solid #f1e0dc;border-radius:12px;padding:14px;color:#806b66;font-size:11px;line-height:1.85;margin-top:13px}
+.summary h3{font-family:Georgia,serif;font-size:27px;font-weight:500;margin-bottom:20px}
+.summary-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}
+.summary-row span:first-child{color:var(--muted)}
+.summary-row span:last-child{font-weight:800;text-align:right}
+.summary-options{font-size:11px;white-space:pre-line;color:#736b69;line-height:2;margin-top:15px}
+.total{background:#fff4f4;border-radius:14px;padding:20px;margin-top:21px}
+.total small{font-size:11px;color:var(--muted)}
+.total strong{display:block;font-family:Georgia,serif;font-size:37px;color:var(--red);margin-top:5px}
+.note{font-size:11px;color:var(--muted);line-height:1.8;margin:15px 0}
+.wide{width:100%}
+.preview{font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow-y:auto;line-height:1.8;padding:13px;border:1px solid var(--line);border-radius:12px;background:#fffdfa}
+.faq-list{max-width:800px;margin:auto}
+details{border-bottom:1px solid var(--line);background:white}
+summary{padding:21px 15px;cursor:pointer;font-size:13px;font-weight:800}
+details p{padding:0 15px 19px;color:var(--muted);line-height:1.9;font-size:12px}
+.bottom-cta{background:#fff4f3;border:1px solid #f4e2e0;text-align:center;border-radius:25px;padding:55px 25px}
+.bottom-cta h2{font-family:Georgia,serif;font-size:clamp(31px,4vw,48px);font-weight:500;margin:12px 0}
+.bottom-cta p{font-size:13px;color:var(--muted);line-height:1.8}
+footer{border-top:1px solid var(--line);padding:28px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;color:var(--muted);font-size:12px}
+.footer-inner a{color:var(--red);font-weight:800}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:950px){
+.hero-grid{grid-template-columns:1fr}
+.hero-art{height:410px}
+.sun{top:0;width:335px;height:335px}
+.service-grid{grid-template-columns:repeat(2,1fr)}
+.order-layout{grid-template-columns:1fr}
+.summary{position:static}
+.process-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+header{height:67px}
+.logo{font-size:15px}.logo-symbol{width:35px;height:35px}
+.menu-btn{display:block}
+nav{display:none;position:absolute;top:67px;left:0;right:0;background:#fffdf9;padding:17px 22px;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line)}
+nav.open{display:flex}
+nav a{padding:12px 0}
+.header-order{display:none}
+.hero{padding:55px 0 65px}
+.hero h1{font-size:47px}
+.hero p{font-size:13px}
+.hero-art{height:330px}
+.sun{width:250px;height:250px;top:12px}
+.cluster-a{transform:scale(.7) rotate(17deg);right:-45px;top:-25px}
+.cluster-b{transform:scale(.57) rotate(-19deg);bottom:0;left:-60px}
+.cluster-c{display:none}
+.art-caption{bottom:10px}
+.art-caption span{font-size:13px}
+.section{padding:65px 0}
+.service-grid,.process-grid{grid-template-columns:1fr}
+.panel{padding:19px}
+.form-grid{grid-template-columns:1fr}
+th,td{padding:13px 11px;font-size:11px}
+td:nth-child(2){max-width:180px}
+.stats{gap:20px}
+.footer-inner{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+*{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+.reveal{opacity:1;transform:none}
+.petal-layer{display:none}
+}
+</style>
+</head>
+<body>
+<div class="petal-layer" id="petals" aria-hidden="true"></div>
+
+<header>
+<div class="container header-inner">
+<a class="logo" href="#home">
+<span class="logo-symbol">日</span>
+<span>Создание сайтов</span>
+</a>
+<nav id="nav">
+<a href="#home">Главная</a>
+<a href="#services">Услуги</a>
+<a href="#prices">Прайс-лист</a>
+<a href="#order">Заказать</a>
+<a href="#faq">Вопросы</a>
+</nav>
+<a href="#order" class="btn btn-red header-order">Оформить заказ ↗</a>
+<button id="menuBtn" class="menu-btn" aria-label="Открыть меню" aria-expanded="false">☰</button>
+</div>
+</header>
+
+<main>
+<section id="home" class="hero">
+<div class="container hero-grid">
+<div>
+<div class="eyebrow">Разработка сайтов • Казахстан</div>
+<h1>Ваши идеи.<br><em>Моя разработка.</em></h1>
+<p>Создаю современные и удобные сайты по доступным ценам. Для бизнеса, магазинов, мероприятий и личных проектов. Выберите услугу, добавьте необходимые функции и отправьте заявку сразу в WhatsApp.</p>
+<div class="hero-actions">
+<a href="#services" class="btn btn-red">Посмотреть услуги ↗</a>
+<a href="#order" class="btn btn-light">Настроить заказ</a>
+</div>
+<div class="stats">
+<div class="stat"><strong>10</strong><small>видов сайтов</small></div>
+<div class="stat"><strong>4 000 ₸</strong><small>стартовая цена</small></div>
+<div class="stat"><strong>Онлайн</strong><small>оформление заявки</small></div>
+</div>
+</div>
+
+<div class="hero-art">
+<div class="sun"></div>
+<div class="japanese-letters">桜 · 日本 · 美</div>
+<div id="flowersA" class="flower-cluster cluster-a"></div>
+<div id="flowersB" class="flower-cluster cluster-b"></div>
+<div id="flowersC" class="flower-cluster cluster-c"></div>
+<div class="art-caption"><span>美しいものをつくる — создаём прекрасное</span></div>
+</div>
+</div>
+</section>
+
+<section id="services" class="section services">
+<div class="container">
+<div class="heading reveal">
+<div class="eyebrow">01 / Услуги</div>
+<h2>Что я могу создать</h2>
+<p>От простой страницы до функционального сайта. Выбирайте то, что подходит именно вашей задаче.</p>
+</div>
+<div id="serviceGrid" class="service-grid"></div>
+</div>
+</section>
+
+<section id="prices" class="section prices">
+<div class="container">
+<div class="heading reveal">
+<div class="eyebrow">02 / Стоимость</div>
+<h2>Прайс-лист</h2>
+<p>Фиксированные стартовые цены за простые версии сайтов. Нужные дополнительные функции можно выбрать при оформлении заказа.</p>
+</div>
+<div class="price-table-wrap reveal">
+<table>
+<thead><tr><th>УСЛУГА</th><th>ЧТО ВХОДИТ</th><th>ЦЕНА ОТ</th></tr></thead>
+<tbody id="priceBody"></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="heading reveal">
+<div class="eyebrow">03 / Процесс</div>
+<h2>Как всё происходит</h2>
+</div>
+<div class="process-grid">
+<div class="process-card reveal"><div class="step-number">01</div><h3>Выбираете услугу</h3><p>Определяете, какой сайт необходим.</p></div>
+<div class="process-card reveal"><div class="step-number">02</div><h3>Настраиваете заказ</h3><p>Отмечаете необходимые функции и пожелания.</p></div>
+<div class="process-card reveal"><div class="step-number">03</div><h3>Пишете в WhatsApp</h3><p>Все выбранные параметры автоматически попадут в сообщение.</p></div>
+<div class="process-card reveal"><div class="step-number">04</div><h3>Обсуждаем детали</h3><p>Согласовываем точную стоимость, сроки и начинаем разработку.</p></div>
+</div>
+</div>
+</section>
+
+<section id="order" class="section order">
+<div class="container">
+<div class="heading reveal">
+<div class="eyebrow">04 / Конструктор</div>
+<h2>Оформить заказ</h2>
+<p>Выбирайте услугу и функции. Стоимость рассчитывается автоматически, а готовая заявка откроется в WhatsApp.</p>
+</div>
+<div class="order-layout">
+
+<div class="panel reveal" id="orderForm">
+<div class="form-group">
+<div class="group-heading"><span>1</span>Тип сайта</div>
+<label class="label" for="serviceSelect">Выберите услугу</label>
+<select id="serviceSelect" class="field"></select>
+</div>
+
+<div class="form-group">
+<div class="group-heading"><span>2</span>Дополнительные функции</div>
+<div id="specificOptions" class="option-list"></div>
+<div id="serviceWarning" class="warning"></div>
+</div>
+
+<div class="form-group">
+<div class="group-heading"><span>3</span>Дополнительные услуги</div>
+<div id="commonOptions" class="option-list"></div>
+</div>
+
+<div class="form-group">
+<div class="group-heading"><span>4</span>Информация о проекте</div>
+<div class="form-grid">
+<div>
+<label class="label" for="clientName">Ваше имя *</label>
+<input id="clientName" class="field" type="text" required maxlength="100" placeholder="Как к вам обращаться?">
+</div>
+<div>
+<label class="label" for="clientPhone">Номер телефона</label>
+<input id="clientPhone" class="field" type="tel" maxlength="30" placeholder="+7 777 000 00 00">
+</div>
+<div>
+<label class="label" for="deadline">Когда нужен сайт?</label>
+<select id="deadline" class="field">
+<option>Не срочно</option>
+<option>Как можно быстрее</option>
+<option>В течение 3 дней</option>
+<option>В течение недели</option>
+<option>В течение месяца</option>
+<option>Обсудим отдельно</option>
+</select>
+</div>
+<div>
+<label class="label" for="designStyle">Предпочитаемый дизайн</label>
+<select id="designStyle" class="field">
+<option>Современный</option>
+<option>Минималистичный</option>
+<option>Светлый</option>
+<option>Тёмный</option>
+<option>Яркий</option>
+<option>На усмотрение разработчика</option>
+</select>
+</div>
+</div>
+<div style="margin-top:17px">
+<label class="label" for="projectInfo">Дополнительные пожелания</label>
+<textarea id="projectInfo" class="field" maxlength="2500" placeholder="Расскажите, какой сайт хотите, какие цвета нравятся и что должно быть на страницах..."></textarea>
+</div>
+<div class="warning">Стоимость является предварительной. Окончательная цена согласовывается до начала работы. Домен, платный хостинг и сторонние сервисы оплачиваются отдельно.</div>
+</div>
+</div>
+
+<aside class="panel summary reveal">
+<h3>Ваш заказ</h3>
+<div class="summary-row"><span>Услуга</span><span id="sumService"></span></div>
+<div class="summary-row"><span>Базовая стоимость</span><span id="sumBase"></span></div>
+<div class="summary-row"><span>Дополнительные функции</span><span id="sumExtras"></span></div>
+<div id="extrasList" class="summary-options"></div>
+<div class="total">
+<small>Предварительная стоимость</small>
+<strong id="sumTotal"></strong>
+</div>
+<p class="note">После нажатия кнопки WhatsApp откроется с уже заполненным сообщением. Для отправки сообщения потребуется подтверждение клиента.</p>
+<button id="orderBtn" type="button" class="btn btn-green wide">Заказать через WhatsApp ↗</button>
+<button id="copyBtn" type="button" class="btn btn-light wide" style="margin-top:10px">Скопировать заявку</button>
+<p style="font-size:12px;font-weight:800;margin:23px 0 10px">Предпросмотр сообщения</p>
+<div id="preview" class="preview"></div>
+</aside>
+
+</div>
+</div>
+</section>
+
+<section id="faq" class="section">
+<div class="container">
+<div class="heading"><div class="eyebrow">05 / Информация</div><h2>Частые вопросы</h2></div>
+<div class="faq-list">
+<details><summary>Что входит в указанную стоимость?</summary><p>Простая версия выбранного сайта с базовым функционалом, который указан в описании услуги. Дополнительные функции рассчитываются отдельно.</p></details>
+<details><summary>Будет ли сайт работать на телефоне?</summary><p>Да, все сайты разрабатываются с адаптацией под смартфоны, планшеты и компьютеры.</p></details>
+<details><summary>Домен и хостинг включены?</summary><p>Нет. Домен, платные услуги хостинга и сторонние сервисы оплачиваются отдельно. Бесплатное размещение возможно, если оно подходит для проекта.</p></details>
+<details><summary>Можно ли потом изменить сайт?</summary><p>Небольшие исправления в рамках согласованного задания обсуждаются заранее. Новые функции и значительные изменения могут потребовать дополнительной оплаты.</p></details>
+<details><summary>Сколько занимает разработка?</summary><p>Срок зависит от сложности сайта и готовности материалов. Точное время выполнения согласовывается перед началом работы.</p></details>
+<details><summary>Как оформить заказ?</summary><p>Выберите услугу и дополнительные функции, заполните данные и нажмите кнопку WhatsApp. Сообщение с подробностями автоматически сформируется на вашем устройстве.</p></details>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="bottom-cta">
+<div class="eyebrow">Создадим что-то красивое</div>
+<h2>Есть идея для сайта?</h2>
+<p>Расскажите о ней — обсудим возможности, стоимость и сроки.</p>
+<a href="#order" class="btn btn-red">Настроить заказ ↗</a>
+<a href="https://wa.me/77772172352" target="_blank" rel="noopener noreferrer" class="btn btn-light">Написать напрямую</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-inner">
+<span>© <span id="year"></span> Создание сайтов на заказ</span>
+<a href="https://wa.me/77772172352" target="_blank" rel="noopener noreferrer">WhatsApp: +7 777 217 23 52 ↗</a>
+</div>
+</footer>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const money=n=>n.toLocaleString("ru-RU")+" ₸";
+const WA="77772172352";
+
+const services=[
+{
+ name:"Сайт-визитка",icon:"🌐",price:5000,
+ desc:"Аккуратная страница для специалиста, небольшого бизнеса или услуги.",
+ includes:["Информация о бизнесе","Контакты и WhatsApp","Мобильная адаптация"],
+ warning:"В базовую стоимость не входят база данных, личные кабинеты и панель управления.",
+ options:[["Галерея фотографий",2000],["Форма обратной связи",3000],["Карта с адресом",1500],["Отзывы клиентов",2000],["Блок услуг с ценами",2500]]
+},
+{
+ name:"Каталог товаров",icon:"🛍️",price:10000,
+ desc:"Витрина товаров с фотографиями, описаниями и ценами.",
+ includes:["Карточки товаров","Категории","Фотографии и цены"],
+ warning:"Базовый каталог не является магазином с автоматической оплатой и складским учётом.",
+ options:[["Поиск по товарам",4000],["Фильтр категорий",4000],["Подробная карточка товара",3000],["Корзина для заявки в WhatsApp",6000]]
+},
+{
+ name:"Сайт магазина",icon:"🏪",price:12000,
+ desc:"Простая интернет-витрина с возможностью отправлять заказы.",
+ includes:["Список товаров","Информация о доставке","Отправка заявки"],
+ warning:"Онлайн-оплата, интеграции с Kaspi, касса и автоматическая работа со складом в базовую стоимость не входят.",
+ options:[["Поиск и фильтры",6000],["Корзина для заявки",7000],["Избранные товары",4000],["Простые промокоды",5000]]
+},
+{
+ name:"Сайт кафе или ресторана",icon:"🍽️",price:7000,
+ desc:"Страница заведения с меню, фотографиями и адресом.",
+ includes:["Информация о заведении","Меню и цены","Контакты"],
+ warning:"Автоматическое бронирование, доставка и интеграции с кассой оплачиваются отдельно.",
+ options:[["Меню с категориями",3000],["Галерея интерьера",2000],["Форма заявки на столик",4000],["Карта расположения",1500],["Кнопка заказа в WhatsApp",2000]]
+},
+{
+ name:"QR-меню",icon:"📱",price:5000,
+ desc:"Электронное меню для кафе, которое открывается по QR-коду.",
+ includes:["Меню с ценами","Категории блюд","Электронный QR-код"],
+ warning:"Печать табличек, онлайн-оплата и подключение ресторанной кассы не включены.",
+ options:[["Фотографии блюд",2000],["Поиск по меню",2500],["Фильтрация категорий",2500],["Дизайн QR-кода для печати",1500],["Корзина для WhatsApp",5000]]
+},
+{
+ name:"Онлайн-запись",icon:"📅",price:12000,
+ desc:"Страница для записи клиентов на услуги мастеров и специалистов.",
+ includes:["Форма заявки","Выбор услуги","Желаемая дата записи"],
+ warning:"Базовая форма не проверяет свободные часы автоматически. Управление расписанием требует отдельной функции.",
+ options:[["Выбор мастера",4000],["Календарь дат",5000],["Список услуг и длительности",3000],["Свободные временные слоты",12000],["Управление заявками",10000]]
+},
+{
+ name:"Лендинг",icon:"🚀",price:8000,
+ desc:"Привлекательная страница для рекламы услуги или товара.",
+ includes:["Главный экран","Преимущества","Контактная кнопка"],
+ warning:"Создание сайта не включает запуск рекламы и не гарантирует количество клиентов или продаж.",
+ options:[["Блок отзывов",2000],["Вопросы и ответы",2000],["Анимированные элементы",4000],["Форма заявки",3000],["Таймер акции",2000]]
+},
+{
+ name:"Сайт-приглашение",icon:"💌",price:4000,
+ desc:"Электронное приглашение на свадьбу, день рождения или праздник.",
+ includes:["Дата и место","Красивое оформление","Ссылка для гостей"],
+ warning:"В некоторых браузерах музыка запускается только после нажатия на кнопку. Сбор ответов гостей требует отдельного способа хранения данных.",
+ options:[["Обратный отсчёт",2000],["Фоновая музыка",1500],["Галерея фотографий",2000],["Подтверждение присутствия",4000],["Дополнительные анимации",3000]]
+},
+{
+ name:"Сайт-портфолио",icon:"🎨",price:5000,
+ desc:"Персональный сайт для демонстрации работ и достижений.",
+ includes:["Информация о специалисте","Примеры работ","Контакты"],
+ warning:"Редактирование проектов через панель управления не включено. Материалы предоставляет заказчик.",
+ options:[["Галерея проектов",3000],["Фильтры проектов",3000],["Скачивание резюме",1000],["Отзывы клиентов",2000],["Контактная форма",3000]]
+},
+{
+ name:"Индивидуальный сайт",icon:"🧩",price:15000,
+ desc:"Небольшой нестандартный сайт по вашей собственной идее.",
+ includes:["Обсуждение идеи","Индивидуальная структура","Согласованные функции"],
+ warning:"Стоимость стартовая. Сложные сервисы и интеграции рассчитываются отдельно после обсуждения.",
+ options:[["Интерактивный калькулятор",7000],["Таблицы и фильтрация",6000],["Сохранение данных",10000],["Простая панель управления",15000],["Дополнительная форма",3000]]
+}
+];
+
+const commons=[
+["Дополнительная страница",3000],
+["Дополнительный язык",5000],
+["Дополнительные анимации",4000],
+["Помощь с публикацией сайта",3000],
+["Приоритетная разработка",5000]
+];
+
+let current=0;
+const selectedSpecific=new Set();
+const selectedCommon=new Set();
+
+function flowers(){
+ const svg=`<div class="flower"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#f4b2c7" stroke="#e59caf" stroke-width="1"><ellipse cx="50" cy="28" rx="15" ry="24"/><ellipse cx="71" cy="43" rx="15" ry="24" transform="rotate(72 71 43)"/><ellipse cx="63" cy="72" rx="15" ry="24" transform="rotate(144 63 72)"/><ellipse cx="37" cy="72" rx="15" ry="24" transform="rotate(216 37 72)"/><ellipse cx="29" cy="43" rx="15" ry="24" transform="rotate(288 29 43)"/></g><circle cx="50" cy="50" r="10" fill="#fff0cf"/><g stroke="#c77a86" stroke-width="1.5" stroke-linecap="round"><path d="M50 50l-4-14M50 50l10-10M50 50l14 4M50 50l2 14M50 50l-13 4"/></g><g fill="#b75f67"><circle cx="46" cy="36" r="2"/><circle cx="60" cy="40" r="2"/><circle cx="64" cy="54" r="2"/><circle cx="52" cy="64" r="2"/><circle cx="37" cy="54" r="2"/></g></svg></div>`;
+ ["flowersA","flowersB","flowersC"].forEach(id=>$(id).innerHTML=svg.repeat(5));
+}
+
+function petals(){
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const root=$("petals");
+ for(let i=0;i<22;i++){
+  const p=document.createElement("span");
+  p.className="petal";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(11+Math.random()*13)+"s";
+  p.style.animationDelay="-"+Math.random()*24+"s";
+  p.style.setProperty("--drift",(Math.random()*220-110)+"px");
+  p.style.width=(8+Math.random()*8)+"px";
+  p.style.height=(12+Math.random()*11)+"px";
+  root.append(p);
+ }
+}
+
+function renderCatalog(){
+ $("serviceGrid").innerHTML=services.map((s,i)=>`
+  <article class="service-card reveal">
+   <span class="service-index">${String(i+1).padStart(2,"0")} / УСЛУГИ</span>
+   <div class="service-icon">${s.icon}</div>
+   <h3>${s.name}</h3>
+   <p>${s.desc}</p>
+   <div class="service-features">${s.includes.map(x=>`<div>${x}</div>`).join("")}</div>
+   <div class="service-bottom">
+    <div class="service-price"><small>Стоимость от</small><strong>${money(s.price)}</strong></div>
+    <button type="button" data-choose="${i}">Выбрать ↗</button>
+   </div>
+  </article>`).join("");
+ $("priceBody").innerHTML=services.map(s=>`<tr><td><strong>${s.name}</strong></td><td>${s.includes.join(", ")}</td><td>${money(s.price)}</td></tr>`).join("");
+ $("serviceSelect").innerHTML=services.map((s,i)=>`<option value="${i}">${s.name} — ${money(s.price)}</option>`).join("");
+ $("serviceGrid").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-choose]");
+  if(!btn)return;
+  choose(Number(btn.dataset.choose));
+  $("order").scrollIntoView({behavior:"smooth"});
+ });
+}
+
+function optionsHTML(list,set,container){
+ container.innerHTML="";
+ list.forEach(([name,price],i)=>{
+  const label=document.createElement("label");
+  label.className="option";
+  const checkbox=document.createElement("input");
+  checkbox.type="checkbox";
+  checkbox.checked=set.has(i);
+  const title=document.createElement("div");
+  title.className="option-text";
+  const strong=document.createElement("strong");
+  strong.textContent=name;
+  title.append(strong);
+  const cost=document.createElement("span");
+  cost.className="option-price";
+  cost.textContent="+"+money(price);
+  label.append(checkbox,title,cost);
+  checkbox.addEventListener("change",()=>{
+   if(checkbox.checked)set.add(i);
+   else set.delete(i);
+   update();
+  });
+  container.append(label);
+ });
+}
+
+function choose(i){
+ if(!services[i])return;
+ current=i;
+ selectedSpecific.clear();
+ $("serviceSelect").value=String(i);
+ optionsHTML(services[i].options,selectedSpecific,$("specificOptions"));
+ $("serviceWarning").textContent="Важно: "+services[i].warning;
+ update();
+}
+
+function calculate(){
+ const s=services[current];
+ const additions=[];
+ s.options.forEach((x,i)=>{if(selectedSpecific.has(i))additions.push(x)});
+ commons.forEach((x,i)=>{if(selectedCommon.has(i))additions.push(x)});
+ const extra=additions.reduce((a,x)=>a+x[1],0);
+ return {s,additions,extra,total:s.price+extra};
+}
+
+function message(){
+ const x=calculate();
+ const name=$("clientName").value.trim()||"Не указано";
+ const phone=$("clientPhone").value.trim()||"Не указан";
+ const info=$("projectInfo").value.trim()||"Обсудим в переписке";
+ const extras=x.additions.length
+ ?x.additions.map(a=>"• "+a[0]+" — "+money(a[1])).join("\n")
+ :"• Без дополнительных функций";
+ return [
+ "Здравствуйте! Хочу заказать разработку сайта.",
+ "",
+ "📌 ДАННЫЕ КЛИЕНТА",
+ "Имя: "+name,
+ "Номер: "+phone,
+ "",
+ "🌐 УСЛУГА",
+ "Тип сайта: "+x.s.name,
+ "Базовая стоимость: "+money(x.s.price),
+ "",
+ "🧩 ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ",
+ extras,
+ "",
+ "🎨 ПОЖЕЛАНИЯ",
+ "Дизайн: "+$("designStyle").value,
+ "Желаемый срок: "+$("deadline").value,
+ "Описание: "+info,
+ "",
+ "💰 СТОИМОСТЬ",
+ "Дополнительные функции: "+money(x.extra),
+ "Предварительная сумма: "+money(x.total),
+ "",
+ "Понимаю, что окончательная стоимость и сроки согласовываются после обсуждения."
+ ].join("\n");
+}
+
+function update(){
+ const x=calculate();
+ $("sumService").textContent=x.s.name;
+ $("sumBase").textContent=money(x.s.price);
+ $("sumExtras").textContent=money(x.extra);
+ $("sumTotal").textContent=money(x.total);
+ $("extrasList").textContent=x.additions.length
+ ?x.additions.map(a=>"✦ "+a[0]+" — "+money(a[1])).join("\n")
+ :"Дополнительные функции не выбраны.";
+ $("preview").textContent=message();
+}
+
+function whatsapp(){
+ if(!$("clientName").value.trim()){
+  $("clientName").focus();
+  alert("Пожалуйста, укажите ваше имя.");
+  return;
+ }
+ const url="https://wa.me/"+WA+"?text="+encodeURIComponent(message());
+ window.open(url,"_blank","noopener,noreferrer");
+}
+
+async function copyOrder(){
+ const text=message(),btn=$("copyBtn");
+ try{
+  if(navigator.clipboard&&window.isSecureContext){
+   await navigator.clipboard.writeText(text);
+  }else{
+   const el=document.createElement("textarea");
+   el.value=text;
+   el.style.position="fixed";
+   el.style.opacity="0";
+   document.body.appendChild(el);
+   el.select();
+   if(!document.execCommand("copy"))throw Error("Copy error");
+   el.remove();
+  }
+  btn.textContent="✓ Заявка скопирована";
+ }catch{
+  btn.textContent="Не удалось скопировать";
+ }
+ setTimeout(()=>btn.textContent="Скопировать заявку",2000);
+}
+
+function setup(){
+ flowers();
+ petals();
+ renderCatalog();
+ optionsHTML(commons,selectedCommon,$("commonOptions"));
+ choose(0);
+ $("serviceSelect").addEventListener("change",e=>choose(Number(e.target.value)));
+ ["clientName","clientPhone","deadline","designStyle","projectInfo"].forEach(id=>{
+  $(id).addEventListener("input",update);
+  $(id).addEventListener("change",update);
+ });
+ $("orderBtn").addEventListener("click",whatsapp);
+ $("copyBtn").addEventListener("click",copyOrder);
+ $("year").textContent=new Date().getFullYear();
+ $("menuBtn").addEventListener("click",()=>{
+  const open=$("nav").classList.toggle("open");
+  $("menuBtn").textContent=open?"✕":"☰";
+  $("menuBtn").setAttribute("aria-expanded",String(open));
+ });
+ document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>{
+  $("nav").classList.remove("open");
+  $("menuBtn").textContent="☰";
+  $("menuBtn").setAttribute("aria-expanded","false");
+ }));
+ if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(entries=>{
+   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}})
+  },{threshold:.07});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+ }else{
+  document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));
+ }
+}
+document.addEventListener("DOMContentLoaded",setup);
+</script>
+</body>
+</html>
